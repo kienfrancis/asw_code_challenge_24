@@ -31,4 +31,13 @@ This is not a closed book assessment.
 If you have time, answer the following questions:
 - What changes you would make to this interfaces for use in an RTOS
 environment?
+1. To use in RTOS environment the following can be added for this interfaces. 
+   1. Make a common HAL interface for the I2C driver for different I2C peripherals usage. 
+   2. If Magnetometer Sensor shares a bus with other device, it is also needed to set up some scheduling of the transaction to poll both devices.
+   3. Timing of the read should be defined to optimize the MCU CPU Utilization. We don't need to over read the sensor and just dispose the data.
 - How might the I2C API be improved
+1. I2C API can be improved by making it the higher level API that links to the HAL of the I2C.
+2. This I2C API can also manage the scheduling of the i2c transactions if there is multiple I2C devices connected.
+
+## Added Changes
+- Added unit tests for the LIS3MDL Driver APIs (mostly sunny test cases). This can be run using ceedling test:all ( Ruby-based Unit Testing Framework )
